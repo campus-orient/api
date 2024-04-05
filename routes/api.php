@@ -21,6 +21,10 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 Route::group(['prefix' => 'v1'], function () {
     //
     Route::group(['middleware' => 'auth:sanctum'], function () {
-        //
+        
+        //Verify token endpoint
+        Route::get('verify-token', function () {
+            return response()->noContent(200);
+        });
     });
 });
