@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,9 +20,12 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 });
 
 Route::group(['prefix' => 'v1'], function () {
-    //
+
+    //Login endpoint
+    Route::post('/login', [AuthenticatedSessionController::class, 'store']);
+
     Route::group(['middleware' => 'auth:sanctum'], function () {
-        
+
         //Verify token endpoint
         Route::get('verify-token', function () {
             return response()->noContent(200);
