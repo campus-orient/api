@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 /*
@@ -23,6 +24,9 @@ Route::group(['prefix' => 'v1'], function () {
 
     //Login endpoint
     Route::post('/login', [AuthenticatedSessionController::class, 'store']);
+
+    //Register endpoint
+    Route::post('/register', [RegisteredUserController::class, 'store']);
 
     Route::group(['middleware' => 'auth:sanctum'], function () {
 
