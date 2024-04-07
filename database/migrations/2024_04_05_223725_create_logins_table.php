@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('logins', function (Blueprint $table) {
-            $table->id();
+            $table->integer('login_id')->autoIncrement();
+            $table->integer('user_id');
             $table->timestamps();
         });
     }
