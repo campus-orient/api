@@ -15,8 +15,7 @@ return new class extends Migration
             $table->integer('user_id')->autoIncrement();
             $table->string('name');
             $table->string('surname');
-            $table->string('identity');
-            $table->string('role');
+            $table->string('type');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
