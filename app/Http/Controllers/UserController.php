@@ -53,5 +53,6 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         //
+        return $user->delete() && response()->noContent(200);
     }
 }
