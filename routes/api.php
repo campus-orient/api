@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,9 @@ Route::group(['prefix' => 'v1'], function () {
     Route::post('/register', [RegisteredUserController::class, 'store']);
 
     Route::group(['middleware' => 'auth:sanctum'], function () {
+
+        //Users endpoint
+        Route::apiResource('/users', UserController::class);
 
         //Verify token endpoint
         Route::get('verify-token', function () {
