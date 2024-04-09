@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\Models\User;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -14,12 +15,15 @@ class LoginEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
+    protected $user;
+
     /**
      * Create a new event instance.
      */
-    public function __construct()
+    public function __construct($user)
     {
         //
+        $this->user = $user;
     }
 
     /**
@@ -29,8 +33,10 @@ class LoginEvent
      */
     public function broadcastOn(): array
     {
-        return [
-            new PrivateChannel('channel-name'),
-        ];
+        // return [
+        //     new PrivateChannel('channel-name'),
+        // ];
+
+        return ['user-login'];
     }
 }
