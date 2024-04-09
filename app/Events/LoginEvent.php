@@ -37,6 +37,11 @@ class LoginEvent
         //     new PrivateChannel('channel-name'),
         // ];
 
-        return ['user-login'];
+        return ['authentication'];
+    }
+    
+    public function broadcastAs(): string
+    {
+        return 'user-login';
     }
 }
