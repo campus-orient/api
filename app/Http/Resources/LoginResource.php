@@ -14,6 +14,13 @@ class LoginResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        // return parent::toArray($request);
+
+        return [
+            'id' => $this->login_id,
+            'time'=> $this->created_at->toTimeString(),
+            'date'=> $this->created_at->toDateString(),
+            'user' => new UserResource($this->user)
+        ];
     }
 }
