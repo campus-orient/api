@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Auth;
 
 use App\Events\LoginEvent;
+use App\Http\Controllers\LoginController;
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\JsonResponse;
@@ -53,7 +54,13 @@ class LoginRequest extends FormRequest
 
         RateLimiter::clear($this->throttleKey());
 
-        event(new LoginEvent(auth()->user()));
+        $user = auth()->user();
+
+        event(new LoginEvent($user));
+
+        $login = new LoginController();
+
+        $login->store($user);
 
         return response()->json([
             'token' => auth()->user()->createToken('authToken')->plainTextToken
