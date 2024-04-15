@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return response()->json("Campus Orient Backend API");
+    return response()->json(["Campus Orient Backend API"], 200);
 });
 
 require __DIR__ . '/auth.php';
