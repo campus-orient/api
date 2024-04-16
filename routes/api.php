@@ -24,6 +24,11 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 
 Route::group(['prefix' => 'v1'], function () {
 
+    //Verify token endpoint
+    Route::get('verify-token', function () {
+        return response()->noContent(200);
+    });
+
     //Login endpoint
     Route::post('/login', [AuthenticatedSessionController::class, 'store']);
 
@@ -37,10 +42,5 @@ Route::group(['prefix' => 'v1'], function () {
 
         //Users endpoint
         Route::apiResource('/logins', LoginController::class);
-
-        //Verify token endpoint
-        Route::get('verify-token', function () {
-            return response()->noContent(200);
-        });
     });
 });
