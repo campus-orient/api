@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('staff', function (Blueprint $table) {
             $table->integer("staff_id")->primary();
             $table->integer("user_id");
+            $table->timestamps();
 
             $table->foreign('user_id')->references('user_id')->on('users')->onUpdate('cascade')->onDelete('cascade');
-            $table->timestamps();
         });
     }
 
