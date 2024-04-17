@@ -10,4 +10,6 @@ class Visitor extends Model
     use HasFactory;
 
     protected $primaryKey = "visitor_id";
+
+    protected $guarded = [];
 }
