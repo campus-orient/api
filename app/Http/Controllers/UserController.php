@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Resources\UserCollection;
 use App\Http\Resources\UserResource;
 use App\Models\User;
@@ -27,6 +28,20 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
+        $registerController = new RegisteredUserController();
+
+        try {
+            $registerController->store($request);
+
+            return response()->json([
+                'message' => "User created successfully"
+            ], 201);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return response()->json([
+                'message' => $th->getMessage()
+            ], 500);
+        }
     }
 
     /**
