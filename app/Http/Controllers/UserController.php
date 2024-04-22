@@ -59,6 +59,19 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         //
+        try {
+            $user->update([
+                'name' => $request->input('name'),
+                'surname' => $request->input('surname'),
+                // 'email' => $request->input('email'),
+                'type' => $request->input('type'),
+            ]);
+
+            return response()->json(['message' => 'User updated successfully'], 200);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return response()->json(['message'], 500);
+        }
     }
 
     /**
