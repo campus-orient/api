@@ -11,5 +11,7 @@ class UserLogin extends Model
 
     protected $primaryKey = "user_login_id";
 
-    protected $guarded = [];
+    protected $fillable = [
+        'user_id'
+    ];
 }
