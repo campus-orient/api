@@ -18,7 +18,7 @@ class UserController extends Controller
         //
         return response()->json([
             'count' => User::all()->count(),
-            'users' => new UserCollection(User::all())
+            'users' => new UserCollection(User::all()->except(auth('sanctum')->user()->user_id))
         ], 200);
     }
 
