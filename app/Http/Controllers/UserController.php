@@ -80,6 +80,16 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         //
-        return $user->delete() && response()->noContent(200);
+        try {
+            $user->delete();
+            return response()->json([
+                'message' => "User deleted successfully"
+            ], 200);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return response()->json([
+                'message' => $th->getMessage()
+            ], 500);
+        }
     }
 }
