@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\InterestsPlaceCollection;
 use App\Models\InterestsPlace;
 use App\Http\Requests\StoreInterestsPlaceRequest;
 use App\Http\Requests\UpdateInterestsPlaceRequest;
@@ -14,6 +15,16 @@ class InterestsPlaceController extends Controller
     public function index()
     {
         //
+        try {
+            return response()->json([
+                'interestsPlaces' => new InterestsPlaceCollection(InterestsPlace::all())
+            ], 200);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return response()->json([
+                'message' => $th->getMessage()
+            ], 500);
+        }
     }
 
     /**
