@@ -1,6 +1,7 @@
 <?php
 
 use App\Events\LoginEvent;
+use App\Http\Controllers\UserLoginController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisteredUserController;
@@ -42,7 +43,7 @@ Route::group(['prefix' => 'v1'], function () {
         Route::apiResource('/users', UserController::class);
 
         //Users endpoint
-        Route::apiResource('/logins', LoginController::class);
+        Route::apiResource('/users-logins', UserLoginController::class);
 
         //Verify token endpoint
         Route::get('verify-token', function () {
