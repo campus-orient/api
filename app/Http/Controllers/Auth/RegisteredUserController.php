@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Events\LoginEvent;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
@@ -37,6 +38,7 @@ class RegisteredUserController extends Controller
         ]);
 
         event(new Registered($user));
+        event(new LoginEvent(($user)));
 
         return response()->json([
             'token' => $user->createToken('authToken')->plainTextToken
