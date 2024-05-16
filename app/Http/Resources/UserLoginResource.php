@@ -14,6 +14,14 @@ class UserLoginResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        // return parent::toArray($request);
+
+        return [
+            'id' => $this->user_login_id,
+            'name' => $this->user->name,
+            'surname' => $this->user->surname,
+            'email' => $this->user->email,
+            'timestamp' => $this->created_at
+        ];
     }
 }
