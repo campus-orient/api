@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Visit;
 use App\Http\Requests\StoreVisitRequest;
 use App\Http\Requests\UpdateVisitRequest;
+use App\Http\Resources\VisitCollection;
 
 class VisitController extends Controller
 {
@@ -14,6 +15,9 @@ class VisitController extends Controller
     public function index()
     {
         //
+        return response()->json([
+            'visits' => new VisitCollection(Visit::all())
+        ], 200);
     }
 
     /**
