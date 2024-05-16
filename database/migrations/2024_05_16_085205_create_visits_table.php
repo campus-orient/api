@@ -12,8 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('visits', function (Blueprint $table) {
-            $table->id();
+            $table->integer('visit_id')->autoIncrement();
+            $table->integer('user_id');
+            $table->integer('interests_place_id');
+            $table->date('date');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('user_id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('interests_place_id')->references('interests_place_id')->on('interests_places')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
