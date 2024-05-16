@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\UserLoginCollection;
 use App\Models\UserLogin;
 use App\Http\Requests\StoreUserLoginRequest;
 use App\Http\Requests\UpdateUserLoginRequest;
@@ -14,6 +15,9 @@ class UserLoginController extends Controller
     public function index()
     {
         //
+        return response()->json([
+            'usersLogins' => new UserLoginCollection(UserLogin::all())
+        ], 200);
     }
 
     /**
