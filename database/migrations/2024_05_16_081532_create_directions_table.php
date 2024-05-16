@@ -12,7 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('directions', function (Blueprint $table) {
-            $table->id();
+            $table->integer('directions_id')->autoIncrement();
+            $table->integer('interests_place_id');
+            $table->integer('checkpoint_id_prev');
+            $table->integer('checkpoint_id_next');
             $table->timestamps();
         });
     }
