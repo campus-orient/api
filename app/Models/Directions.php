@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Directions extends Model
 {
     use HasFactory;
+
+    protected $primaryKey = "directions_id";
+    protected $guarded = [];
 }
