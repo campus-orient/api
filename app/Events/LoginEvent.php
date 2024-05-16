@@ -16,7 +16,7 @@ class LoginEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    protected $user;
+    public $user;
 
     /**
      * Create a new event instance.
@@ -25,13 +25,6 @@ class LoginEvent
     {
         //
         $this->user = $user;
-    }
-
-    public function handle()
-    {
-        UserLogin::create([
-            'user_id' => $this->user->user_id
-        ]);
     }
 
     /**
