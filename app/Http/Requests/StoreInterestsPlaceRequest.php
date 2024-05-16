@@ -14,6 +14,13 @@ class StoreInterestsPlaceRequest extends FormRequest
         return true;
     }
 
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'name' => ucfirst($this->input('name')),
+        ]);
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *
