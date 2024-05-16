@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('interests_places', function (Blueprint $table) {
             $table->integer('interests_place_id')->autoIncrement();
             $table->string('name');
-            $table->string('description');
             $table->string('latitude');
             $table->string('longitude');
             $table->timestamps();
