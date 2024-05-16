@@ -19,6 +19,8 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign('interests_place_id')->references('interests_place_id')->on('interests_places')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('checkpoint_id_prev')->references('checkpoint_id')->on('checkpoints')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('checkpoint_id_next')->references('checkpoint_id')->on('checkpoints')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
