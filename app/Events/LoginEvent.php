@@ -3,6 +3,7 @@
 namespace App\Events;
 
 use App\Models\User;
+use App\Models\UserLogin;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -26,6 +27,13 @@ class LoginEvent
         $this->user = $user;
     }
 
+    public function handle()
+    {
+        UserLogin::create([
+            'user_id' => $this->user->user_id
+        ]);
+    }
+
     /**
      * Get the channels the event should broadcast on.
      *
@@ -39,7 +47,7 @@ class LoginEvent
 
         return ['authentication'];
     }
-    
+
     public function broadcastAs(): string
     {
         return 'user-login';
