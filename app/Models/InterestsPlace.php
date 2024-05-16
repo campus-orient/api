@@ -10,5 +10,8 @@ class InterestsPlace extends Model
     use HasFactory;
 
     protected $primaryKey = "interests_place_id";
-    protected $guarded = [];
+
+    protected $fillable = [
+        'name', 'latitude', 'longitude'
+    ];
 }
