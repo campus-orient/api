@@ -12,7 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('checkpoints', function (Blueprint $table) {
-            $table->id();
+            $table->integer('checkpoint_id')->autoIncrement();
+            $table->string('name');
+            $table->string('description');
+            $table->string('latitude');
+            $table->string('longitude');
             $table->timestamps();
         });
     }
