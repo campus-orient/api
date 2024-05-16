@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\InterestsPlaceCollection;
+use App\Http\Resources\InterestsPlaceResource;
 use App\Models\InterestsPlace;
 use App\Http\Requests\StoreInterestsPlaceRequest;
 use App\Http\Requests\UpdateInterestsPlaceRequest;
@@ -28,33 +29,24 @@ class InterestsPlaceController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(StoreInterestsPlaceRequest $request)
     {
         //
+        try {
+            $newInterestsPlace = InterestsPlace::create($request->validated());
+            return response()->json(['interestsPlace' => new InterestsPlaceResource($newInterestsPlace)]);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return response()->json(['message' => $th->getMessage()], 500);
+        }
     }
 
     /**
      * Display the specified resource.
      */
     public function show(InterestsPlace $interestsPlace)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(InterestsPlace $interestsPlace)
     {
         //
     }
