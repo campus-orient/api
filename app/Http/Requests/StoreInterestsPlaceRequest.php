@@ -11,7 +11,7 @@ class StoreInterestsPlaceRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,6 +23,9 @@ class StoreInterestsPlaceRequest extends FormRequest
     {
         return [
             //
+            'name' => ['required', 'string', 'unique:interests_places,name,null,interests_place_id'],
+            'latitude' => ['required', 'string'],
+            'longitude' => ['required', 'string'],
         ];
     }
 }
