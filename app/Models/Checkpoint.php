@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Checkpoint extends Model
 {
     use HasFactory;
+
+    protected $primaryKey = "checkpoint_id";
+    protected $guarded = [];
 }
