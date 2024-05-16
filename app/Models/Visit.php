@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Visit extends Model
 {
     use HasFactory;
+
+    protected $primaryKey = "visit_id";
+    protected $guarded = [];
 }
