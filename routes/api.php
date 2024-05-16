@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\LoginEvent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisteredUserController;
@@ -7,6 +8,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\InterestsPlaceController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
+use App\Models\UserLogin;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +46,7 @@ Route::group(['prefix' => 'v1'], function () {
 
         //Verify token endpoint
         Route::get('verify-token', function () {
+            event(new LoginEvent(auth('sanctum')->user()));
             return response()->noContent(200);
         });
     });
