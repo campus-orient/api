@@ -17,6 +17,8 @@ return new class extends Migration
             $table->integer('checkpoint_id_prev');
             $table->integer('checkpoint_id_next');
             $table->timestamps();
+
+            $table->foreign('interests_place_id')->references('interests_place_id')->on('interests_places')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
