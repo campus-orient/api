@@ -65,5 +65,12 @@ class InterestsPlaceController extends Controller
     public function destroy(InterestsPlace $interestsPlace)
     {
         //
+        try {
+            $interestsPlace->delete();
+            return response()->json(['message' => 'Interests place deleted successfully'], 200);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return response()->json(['message' => $th->getMessage()], 500);
+        }
     }
 }
