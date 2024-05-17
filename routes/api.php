@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\InterestsPlaceController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VisitController;
 use App\Models\UserLogin;
 
 /*
@@ -42,8 +43,11 @@ Route::group(['prefix' => 'v1'], function () {
         //Users endpoint
         Route::apiResource('/users', UserController::class);
 
-        //Users endpoint
+        //Users logins endpoint
         Route::apiResource('/users-logins', UserLoginController::class);
+
+        //Visits endpoint
+        Route::apiResource('/visits', VisitController::class);
 
         //Verify token endpoint
         Route::get('verify-token', function () {
