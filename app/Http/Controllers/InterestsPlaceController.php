@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\InterestsPlaceCreated;
 use App\Http\Resources\InterestsPlaceCollection;
 use App\Http\Resources\InterestsPlaceResource;
 use App\Models\InterestsPlace;
@@ -36,6 +37,9 @@ class InterestsPlaceController extends Controller
         //
         try {
             $newInterestsPlace = InterestsPlace::create($request->validated());
+
+            event(new InterestsPlaceCreated($newInterestsPlace));
+
             return response()->json(['interestsPlace' => new InterestsPlaceResource($newInterestsPlace)]);
         } catch (\Throwable $th) {
             //throw $th;
