@@ -21,7 +21,7 @@ class UserLoginResource extends JsonResource
             'name' => $this->user->name,
             'surname' => $this->user->surname,
             'email' => $this->user->email,
-            'timestamp' => $this->created_at
+            'timestamp' => $this->created_at->diffForHumans(),
         ];
     }
 }
