@@ -16,7 +16,7 @@ class UserLoginController extends Controller
     {
         //
         return response()->json([
-            'usersLogins' => new UserLoginCollection(UserLogin::all())
+            'usersLogins' => new UserLoginCollection(UserLogin::all()->sortDesc())
         ], 200);
     }
 
