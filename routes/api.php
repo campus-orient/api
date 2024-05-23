@@ -30,6 +30,10 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     ], 200);
 });
 
+Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
+    ->middleware('auth:sanctum')
+    ->name('logout');
+
 Route::group(['prefix' => 'v1'], function () {
 
     //Login endpoint
@@ -41,8 +45,6 @@ Route::group(['prefix' => 'v1'], function () {
 
     //Sanctum protected routes
     Route::group(['middleware' => 'auth:sanctum'], function () {
-
-        Route::post('/logout', [AuthenticatedSessionController::class, 'destroy']);
 
 
         //Interests places endpoint
