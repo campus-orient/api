@@ -38,7 +38,12 @@ Route::group(['prefix' => 'v1'], function () {
     //Register endpoint
     Route::post('/register', [RegisteredUserController::class, 'store']);
 
+
+    //Sanctum protected routes
     Route::group(['middleware' => 'auth:sanctum'], function () {
+
+        Route::post('/logout', [AuthenticatedSessionController::class, 'destroy']);
+
 
         //Interests places endpoint
         Route::apiResource('/interests-places', InterestsPlaceController::class);
