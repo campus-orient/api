@@ -25,7 +25,9 @@ use App\Models\UserLogin;
 */
 
 Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
-    return new UserResource($request->user());
+    return response()->json([
+        'user' => new UserResource($request->user())
+    ], 200);
 });
 
 Route::group(['prefix' => 'v1'], function () {
