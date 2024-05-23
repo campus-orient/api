@@ -2,6 +2,7 @@
 
 use App\Events\LoginEvent;
 use App\Http\Controllers\UserLoginController;
+use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisteredUserController;
@@ -24,7 +25,7 @@ use App\Models\UserLogin;
 */
 
 Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
-    return $request->user();
+    return new UserResource($request->user());
 });
 
 Route::group(['prefix' => 'v1'], function () {
