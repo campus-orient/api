@@ -14,4 +14,9 @@ class InterestsPlace extends Model
     protected $fillable = [
         'name', 'latitude', 'longitude'
     ];
+
+    public function visits()
+    {
+        return $this->hasMany(Visit::class, 'interests_place_id');
+    }
 }
