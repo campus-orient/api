@@ -11,4 +11,9 @@ class Visit extends Model
 
     protected $primaryKey = "visit_id";
     protected $guarded = [];
+
+    public function interestsPlace()
+    {
+        return $this->belongsTo(InterestsPlace::class);
+    }
 }
