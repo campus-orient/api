@@ -21,7 +21,8 @@ class InterestsPlaceResource extends JsonResource
             'name' => $this->name,
             'latitude' => $this->latitude,
             'longitude' => $this->longitude,
-            'createDate' => $this->created_at->toDateString()
+            'createDate' => $this->created_at->toDateString(),
+            'visits' => count($this->visits)
         ];
     }
 }
