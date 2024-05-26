@@ -12,8 +12,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('bounds', function (Blueprint $table) {
-            $table->id();
+            $table->integer('bound_id')->autoIncrement();
+            $table->integer('interests_place_id');
+            $table->string('latitude');
+            $table->string('longitude');
+            $table->string('detour_forward');
+            $table->string('detour_left');
+            $table->string('detour_back');
+            $table->string('detour_right');
             $table->timestamps();
+
+            $table->foreign('interests_place_id')->references('interests_place_id')->on('interests_places')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
