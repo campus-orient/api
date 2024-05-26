@@ -2,18 +2,32 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\BoundCollection;
 use App\Models\Bound;
 use App\Http\Requests\StoreBoundRequest;
 use App\Http\Requests\UpdateBoundRequest;
+use Illuminate\Http\Request;
 
 class BoundController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         //
+        try {
+            return response()->json([
+                'bounds' => new BoundCollection(
+                    Bound::where('interests_place_id', '=', $request->interestsPlaceId)
+                )
+            ], 200);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return response()->json([
+                'message' => $th->getMessage()
+            ], 500);
+        }
     }
 
     /**
