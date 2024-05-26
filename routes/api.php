@@ -1,6 +1,7 @@
 <?php
 
 use App\Events\LoginEvent;
+use App\Http\Controllers\BoundController;
 use App\Http\Controllers\UserLoginController;
 use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
@@ -46,6 +47,8 @@ Route::group(['prefix' => 'v1'], function () {
     //Sanctum protected routes
     Route::group(['middleware' => 'auth:sanctum'], function () {
 
+        //Interests places endpoint
+        Route::apiResource('/bounds', BoundController::class);
 
         //Interests places endpoint
         Route::apiResource('/interests-places', InterestsPlaceController::class);
