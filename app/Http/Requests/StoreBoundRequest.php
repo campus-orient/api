@@ -11,7 +11,7 @@ class StoreBoundRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,6 +23,9 @@ class StoreBoundRequest extends FormRequest
     {
         return [
             //
+            'latitude' => ['required', 'string'],
+            'longitude' => ['required', 'string'],
+            'interests_place_id' => ['required']
         ];
     }
 }
