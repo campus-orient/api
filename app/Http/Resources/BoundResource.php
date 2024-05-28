@@ -14,6 +14,12 @@ class BoundResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        // return parent::toArray($request);
+
+        return [
+            'id' => $this->bound_id,
+            'latitude' => $this->latitude,
+            'longitude' => $this->longitude
+        ];
     }
 }
