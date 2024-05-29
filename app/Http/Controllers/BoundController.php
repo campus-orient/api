@@ -23,7 +23,9 @@ class BoundController extends Controller
         try {
             return response()->json([
                 'bounds' => new BoundCollection(
-                    Bound::where('interests_place_id', '=', $request->interestsPlaceId)->get()
+                    $request->interestsPlaceId ?
+                        Bound::where('interests_place_id', '=', $request->interestsPlaceId)->get() :
+                        Bound::all()
                 )
             ], 200);
         } catch (\Throwable $th) {
