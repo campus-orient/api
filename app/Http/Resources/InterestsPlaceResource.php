@@ -23,7 +23,7 @@ class InterestsPlaceResource extends JsonResource
             'longitude' => $this->longitude,
             'createDate' => $this->created_at->toDateString(),
             'visits' => count($this->visits),
-            // 'bounds' => new BoundCollection($this->bounds)
+            'bounds' => $this->bounds
         ];
     }
 }
