@@ -25,7 +25,7 @@ class BoundController extends Controller
                 'bounds' => new BoundCollection(
                     $request->interestsPlaceId ?
                         Bound::where('interests_place_id', '=', $request->interestsPlaceId)->get() :
-                        Bound::all()
+                        Bound::all(), ['interestsPlace']
                 )
             ], 200);
         } catch (\Throwable $th) {
