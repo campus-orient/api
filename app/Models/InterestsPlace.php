@@ -19,4 +19,9 @@ class InterestsPlace extends Model
     {
         return $this->hasMany(Visit::class, 'interests_place_id');
     }
+
+    public function bounds()
+    {
+        return $this->hasMany(Bound::class, 'interests_place_id');
+    }
 }
