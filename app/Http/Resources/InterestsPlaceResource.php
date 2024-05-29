@@ -22,7 +22,8 @@ class InterestsPlaceResource extends JsonResource
             'latitude' => $this->latitude,
             'longitude' => $this->longitude,
             'createDate' => $this->created_at->toDateString(),
-            'visits' => count($this->visits)
+            'visits' => count($this->visits),
+            'bounds' => new BoundCollection($this->bounds)
         ];
     }
 }
