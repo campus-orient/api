@@ -18,7 +18,7 @@ class BoundResource extends JsonResource
 
         return [
             'id' => $this->bound_id,
-            'interestsPlace' => new InterestsPlaceResource($this->interestsPlace),
+            // 'interestsPlace' => new InterestsPlaceResource($this->interestsPlace),
             'latitude' => $this->latitude,
             'longitude' => $this->longitude
         ];
