@@ -33,7 +33,7 @@ class InterestsPlaceResource extends JsonResource
         ];
 
         if (in_array('bounds', $this->relationships)) {
-            $data['bounds'] = new BoundCollection($this->bounds, ['interestsPlace']);
+            // $data['bounds'] = new BoundCollection($this->bounds, ['interestsPlace']);
         }
 
         return $data;
