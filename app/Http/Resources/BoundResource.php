@@ -7,6 +7,13 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class BoundResource extends JsonResource
 {
+    protected $relationships;
+
+    public function __construct($resource, $relationships = [])
+    {
+        parent::__construct($resource);
+        $this->relationships = $relationships;
+    }
     /**
      * Transform the resource into an array.
      *
@@ -16,11 +23,14 @@ class BoundResource extends JsonResource
     {
         // return parent::toArray($request);
 
-        return [
+        $data = [
             'id' => $this->bound_id,
-            // 'interestsPlace' => new InterestsPlaceResource($this->interestsPlace),
             'latitude' => $this->latitude,
             'longitude' => $this->longitude
         ];
+
+        if (in_array('interestsPlace', $this->relationships)) $data['interestsPlace'] = new InterestsPlaceResource($this->interestsPlace);
+
+        return $data;
     }
 }
