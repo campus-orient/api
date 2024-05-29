@@ -20,4 +20,9 @@ class Bound extends Model
         'detour_back',
         'detour_right'
     ];
+
+    public function interestsPlace()
+    {
+        return $this->belongsTo(InterestsPlace::class, 'interests_place_id', 'interests_place_id');
+    }
 }
