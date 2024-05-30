@@ -12,12 +12,6 @@ class Announcement extends Model
     protected $primaryKey = "announcement_id";
 
     protected $fillable = [
-        'bound_id',
         'message'
     ];
-
-    public function bound()
-    {
-        return $this->belongsTo(Bound::class, 'bound_id', 'bound_id');
-    }
 }
