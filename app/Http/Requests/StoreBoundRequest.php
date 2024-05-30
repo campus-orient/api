@@ -25,7 +25,8 @@ class StoreBoundRequest extends FormRequest
             //
             'latitude' => ['required', 'string'],
             'longitude' => ['required', 'string'],
-            'interests_place_id' => ['required']
+            'interests_place_id' => ['required'],
+            'surroundings' => ['required', 'string']
         ];
     }
 }
