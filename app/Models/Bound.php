@@ -15,6 +15,7 @@ class Bound extends Model
         'interests_place_id',
         'latitude',
         'longitude',
+        'surroundings',
         'detour_forward',
         'detour_left',
         'detour_back',
@@ -24,10 +25,5 @@ class Bound extends Model
     public function interestsPlace()
     {
         return $this->belongsTo(InterestsPlace::class, 'interests_place_id', 'interests_place_id');
-    }
-
-    public function announcements()
-    {
-        return $this->hasMany(Announcement::class, 'bound_id', 'bound_id');
     }
 }
