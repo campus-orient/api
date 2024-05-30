@@ -25,7 +25,8 @@ class BoundController extends Controller
                 'bounds' => new BoundCollection(
                     $request->interestsPlaceId ?
                         Bound::where('interests_place_id', '=', $request->interestsPlaceId)->get() :
-                        Bound::all(), ['interestsPlace']
+                        Bound::all(),
+                    ['interestsPlace']
                 )
             ], 200);
         } catch (\Throwable $th) {
@@ -47,6 +48,7 @@ class BoundController extends Controller
         try {
             $newBoundLatitude = $request->input('latitude');
             $newBoundLongitude = $request->input('longitude');
+            $newBoundSurroundings = $request->input('surroundings');
 
             $existingBounds = Bound::where('interests_place_id', '=', $request->input('interests_place_id'))->get();
 
@@ -57,16 +59,14 @@ class BoundController extends Controller
 
                     $distance = self::calculateDistanceBetween($newBoundLatitude, $newBoundLongitude, $existingBound->latitude, $existingBound->longitude);
 
-                    if ($distance < 10) {
+                    if ($distance < 5) {
                         $this->conflictingBounds = true;
                         break; // Exit the loop once a conflict is found
                     }
                 }
             }
 
-            // Return error response if conflicting bounds exist
             if ($this->conflictingBounds) {
-                // return response()->json(['message' => 'Conflicting bounds found.'], 400);
                 abort(409, 'Conflicting bounds detected. Bounds must be at least 5 meters apart');
             }
 
@@ -74,10 +74,10 @@ class BoundController extends Controller
             $newBound = Bound::create([
                 'latitude' => $newBoundLatitude,
                 'longitude' => $newBoundLongitude,
-                'interests_place_id' => $request->input('interests_place_id')
+                'interests_place_id' => $request->input('interests_place_id'),
+                'surroundings' => $newBoundSurroundings
             ]);
 
-            // Return success response with the newly created bound
             return response()->json(['bound' => new BoundResource($newBound)], 201);
         } catch (\Throwable $th) {
             // Handle exceptions and return error response
@@ -107,6 +107,18 @@ class BoundController extends Controller
     public function destroy(Bound $bound)
     {
         //
+        try {
+            $bound->delete();
+
+            return response()->json([
+                'message' => 'Bound deleted successfully'
+            ], 200);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return response()->json([
+                'message' => $th->getMessage()
+            ], 500);
+        }
     }
 
     public function calculateDistanceBetween($lat1, $lng1, $lat2, $lng2)
