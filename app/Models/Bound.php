@@ -25,4 +25,9 @@ class Bound extends Model
     {
         return $this->belongsTo(InterestsPlace::class, 'interests_place_id', 'interests_place_id');
     }
+
+    public function announcements()
+    {
+        return $this->hasMany(Announcement::class, 'bound_id', 'bound_id');
+    }
 }
