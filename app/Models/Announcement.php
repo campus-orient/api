@@ -15,4 +15,9 @@ class Announcement extends Model
         'bound_id',
         'message'
     ];
+
+    public function bound()
+    {
+        return $this->belongsTo(Bound::class, 'bound_id', 'bound_id');
+    }
 }
