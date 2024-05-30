@@ -12,8 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('announcements', function (Blueprint $table) {
-            $table->id();
+            $table->integer('announcement_id')->autoIncrement();
+            $table->integer('bound_id');
+            $table->string('message');
             $table->timestamps();
+
+            $table->foreign('bound_id')->references('bound_id')->on('bounds')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
