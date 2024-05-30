@@ -16,6 +16,7 @@ return new class extends Migration
             $table->integer('interests_place_id');
             $table->string('latitude');
             $table->string('longitude');
+            $table->string('surroundings');
             $table->string('detour_forward')->nullable();
             $table->string('detour_left')->nullable();
             $table->string('detour_back')->nullable();
