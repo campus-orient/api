@@ -26,7 +26,8 @@ class BoundResource extends JsonResource
         $data = [
             'id' => $this->bound_id,
             'latitude' => $this->latitude,
-            'longitude' => $this->longitude
+            'longitude' => $this->longitude,
+            'surroundings' => $this->surroundings
         ];
 
         if (in_array('interestsPlace', $this->relationships)) $data['interestsPlace'] = new InterestsPlaceResource($this->interestsPlace);
