@@ -38,10 +38,10 @@ class RegisteredUserController extends Controller
         ]);
 
         event(new Registered($user));
-        event(new LoginEvent(($user)));
+        // event(new LoginEvent(($user)));
 
         return response()->json([
-            'token' => $user->createToken('authToken')->plainTextToken
+            'message' => "Account registration successful"
         ], 201);
     }
 }
