@@ -16,12 +16,14 @@ class UserLoginResource extends JsonResource
     {
         // return parent::toArray($request);
 
-        return [
+        $data = [
             'id' => $this->user_login_id,
             'name' => $this->user->name,
             'surname' => $this->user->surname,
             'email' => $this->user->email,
             'timestamp' => $this->created_at->diffForHumans(),
         ];
+
+        return $data;
     }
 }

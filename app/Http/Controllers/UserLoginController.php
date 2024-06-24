@@ -6,17 +6,18 @@ use App\Http\Resources\UserLoginCollection;
 use App\Models\UserLogin;
 use App\Http\Requests\StoreUserLoginRequest;
 use App\Http\Requests\UpdateUserLoginRequest;
+use Illuminate\Http\Request;
 
 class UserLoginController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         //
         return response()->json([
-            'usersLogins' => new UserLoginCollection(UserLogin::all()->sortDesc())
+            'usersLogins' => new UserLoginCollection($request->userId ? UserLogin::where('user_id', '=', $request->userId)->get()->sortDesc() : UserLogin::all()->sortDesc())
         ], 200);
     }
 

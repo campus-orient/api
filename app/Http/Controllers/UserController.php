@@ -50,7 +50,9 @@ class UserController extends Controller
     public function show(User $user)
     {
         //
-        return response()->json(new UserResource($user), 200);
+        return response()->json([
+            'user' => new UserResource($user, ['logins'])
+        ], 200);
     }
 
     /**
@@ -67,10 +69,14 @@ class UserController extends Controller
                 'type' => $request->input('type'),
             ]);
 
-            return response()->json(['message' => 'User updated successfully'], 200);
+            return response()->json([
+                'message' => 'User updated successfully'
+            ], 200);
         } catch (\Throwable $th) {
             //throw $th;
-            return response()->json(['message'], 500);
+            return response()->json([
+                'message' => $th->getMessage()
+            ], 500);
         }
     }
 
@@ -85,6 +91,30 @@ class UserController extends Controller
             return response()->json([
                 'message' => "User deleted successfully"
             ], 200);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return response()->json([
+                'message' => $th->getMessage()
+            ], 500);
+        }
+    }
+
+    public function manageAccess(Request $request)
+    {
+        $request->validate([
+            'userId' => ['required']
+        ]);
+
+        $intention = $request->intention;
+        $userId = $request->userId;
+
+        try {
+            $user = User::find($userId);
+            $user->update(['status' => $intention]);
+
+            return response()->json([
+                "message" => "Account set to " . $intention . " successfully"
+            ], 201);
         } catch (\Throwable $th) {
             //throw $th;
             return response()->json([

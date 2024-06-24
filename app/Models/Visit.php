@@ -14,6 +14,11 @@ class Visit extends Model
 
     public function interestsPlace()
     {
-        return $this->belongsTo(InterestsPlace::class);
+        return $this->belongsTo(InterestsPlace::class, 'interests_place_id', 'interests_place_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'user_id');
     }
 }

@@ -37,8 +37,12 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
-        foreach ($administrators as $key => $administrator) {
+        foreach ($administrators as $administrator) {
             User::create($administrator);
         }
+
+        $this->call([
+            InterestsPlaceSeeder::class
+        ]);
     }
 }

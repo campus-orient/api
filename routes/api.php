@@ -47,6 +47,9 @@ Route::group(['prefix' => 'v1'], function () {
     //Sanctum protected routes
     Route::group(['middleware' => 'auth:sanctum'], function () {
 
+        //Lock user account
+        Route::post('/manage-access', [UserController::class, 'manageAccess']);
+
         //Interests places endpoint
         Route::apiResource('/bounds', BoundController::class);
 

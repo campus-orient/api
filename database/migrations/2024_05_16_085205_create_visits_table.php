@@ -15,7 +15,6 @@ return new class extends Migration
             $table->integer('visit_id')->autoIncrement();
             $table->integer('user_id');
             $table->integer('interests_place_id');
-            $table->date('date');
             $table->timestamps();
 
             $table->foreign('user_id')->references('user_id')->on('users')->onUpdate('cascade')->onDelete('cascade');

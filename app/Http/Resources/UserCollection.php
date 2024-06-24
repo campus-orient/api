@@ -7,6 +7,13 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class UserCollection extends ResourceCollection
 {
+    protected $relationships;
+
+    public function __construct($resource, $relationships = [])
+    {
+        parent::__construct($resource);
+        $this->relationships = $relationships;
+    }
     /**
      * Transform the resource collection into an array.
      *
@@ -14,6 +21,8 @@ class UserCollection extends ResourceCollection
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return $this->collection->map(function ($user) use ($request) {
+            return (new UserResource($user, $this->relationships))->toArray($request);
+        })->toArray();
     }
 }
