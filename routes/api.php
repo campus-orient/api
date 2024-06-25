@@ -43,6 +43,11 @@ Route::group(['prefix' => 'v1'], function () {
     //Register endpoint
     Route::post('/register', [RegisteredUserController::class, 'store']);
 
+    //Verify account existence
+    Route::post('/verify-account', [AuthenticatedSessionController::class, 'verifyAccount']);
+
+    //Create new account password
+    Route::post('/create-password', [AuthenticatedSessionController::class, 'createPassword']);
 
     //Sanctum protected routes
     Route::group(['middleware' => 'auth:sanctum'], function () {

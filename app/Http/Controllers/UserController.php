@@ -34,7 +34,7 @@ class UserController extends Controller
             $registerController->store($request);
 
             return response()->json([
-                'message' => "User created successfully"
+                'message' => ucfirst($request->type) . " account created successfully"
             ], 201);
         } catch (\Throwable $th) {
             //throw $th;
